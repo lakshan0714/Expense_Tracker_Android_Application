@@ -39,20 +39,24 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login); // ✅ this must match your layout filename
 
-        EdgeToEdge.enable(this);
+        View mainView = findViewById(R.id.main); // make sure ScrollView has this id
 
-        setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        if (mainView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        } else {
+            Log.e("LoginActivity", "View with id 'main' not found in activity_login.xml");
+        }
 
-        textView=findViewById(R.id.login_click);
+        textView=findViewById(R.id.signup_text);
         buttonlogin=findViewById(R.id.btn_login);
-        editTextEmail=findViewById(R.id.email);
-        editTextPassword=findViewById(R.id.password);
+        editTextEmail=findViewById(R.id.email_input);
+        editTextPassword=findViewById(R.id.password_input);
         mAuth = FirebaseAuth.getInstance();
 
         initializeDatabase();
