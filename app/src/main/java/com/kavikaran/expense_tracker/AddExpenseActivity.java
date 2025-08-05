@@ -133,8 +133,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                 // Set the location name in the EditText
                 locationInput.setText(locationName);
 
-                // Optional: You can store latitude and longitude for future use if needed
-                // For now, we're just storing the location name as requested
+
             }
         }
     }

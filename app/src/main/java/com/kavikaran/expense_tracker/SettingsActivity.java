@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         backButton = findViewById(R.id.backButton);
         categoryManagement = findViewById(R.id.categoryManagement);
-        themeManagement = findViewById(R.id.themeManagement);
+
 
         // Back to home
         backButton.setOnClickListener(v -> {
@@ -35,11 +35,11 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Theme Management
-        themeManagement.setOnClickListener(v -> {
-            Intent intent = new Intent(SettingsActivity.this, ThemeManagement.class);
-            startActivity(intent);
-        });
+//        // Theme Management
+//        themeManagement.setOnClickListener(v -> {
+//            Intent intent = new Intent(SettingsActivity.this, ThemeManagement.class);
+//            startActivity(intent);
+//        });
     }
 
     // Handle physical back button

@@ -23,8 +23,12 @@ public class ExpenseAdapter extends BaseAdapter {
     }
 
     public void updateExpenses(List<Expense> newExpenses) {
-        this.expenses.clear();
-        this.expenses.addAll(newExpenses);
+        if (this.expenses != null) {
+            this.expenses.clear();
+            if (newExpenses != null) {
+                this.expenses.addAll(newExpenses);
+            }
+        }
         notifyDataSetChanged();
     }
 
@@ -35,12 +39,19 @@ public class ExpenseAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return expenses.get(position);
+        if (expenses != null && position >= 0 && position < expenses.size()) {
+            return expenses.get(position);
+        }
+        return null;
     }
 
     @Override
     public long getItemId(int position) {
-        return expenses.get(position).getId();
+        if (expenses != null && position >= 0 && position < expenses.size()) {
+            Expense expense = expenses.get(position);
+            return expense != null ? expense.getId() : position;
+        }
+        return position;
     }
 
     @Override
@@ -48,35 +59,50 @@ public class ExpenseAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            // Create simple layout if expense_list_item.xml doesn't exist
-            convertView = createSimpleItemView(parent);
+            convertView = inflater.inflate(R.layout.expense_list_item, parent, false);
             holder = new ViewHolder();
-            holder.titleText = convertView.findViewById(android.R.id.text1);
-            holder.categoryText = convertView.findViewById(android.R.id.text2);
+            holder.titleText = convertView.findViewById(R.id.expenseTitle);
+            holder.categoryText = convertView.findViewById(R.id.expenseCategory);
+            holder.expenseAmount = convertView.findViewById(R.id.expenseAmount);
+            holder.expenseDate = convertView.findViewById(R.id.expenseDate);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Expense expense = expenses.get(position);
+        // Add null checks
+        if (expenses != null && position >= 0 && position < expenses.size()) {
+            Expense expense = expenses.get(position);
 
-        // Set title
-        holder.titleText.setText(expense.getTitle());
+            if (expense != null) {
+                // Set title with null check
+                if (holder.titleText != null) {
+                    holder.titleText.setText(expense.getTitle() != null ? expense.getTitle() : "");
+                }
 
-        // Set category and amount info
-        String categoryInfo = expense.getCategory() + " - Rs. " + expense.getAmount() + " (" + expense.getDate() + ")";
-        holder.categoryText.setText(categoryInfo);
+                // Set category with null check
+                if (holder.categoryText != null) {
+                    holder.categoryText.setText(expense.getCategory() != null ? expense.getCategory() : "");
+                }
+
+                // Uncomment and add null checks for amount and date
+                if (holder.expenseAmount != null) {
+                    holder.expenseAmount.setText(String.format("$%.2f", expense.getAmount()));
+                }
+
+                if (holder.expenseDate != null) {
+                    holder.expenseDate.setText(expense.getDate() != null ? expense.getDate() : "");
+                }
+            }
+        }
 
         return convertView;
-    }
-
-    private View createSimpleItemView(ViewGroup parent) {
-        // Create a simple two-line list item if custom layout doesn't exist
-        return inflater.inflate(android.R.layout.simple_list_item_2, parent, false);
     }
 
     static class ViewHolder {
         TextView titleText;
         TextView categoryText;
+        TextView expenseAmount;
+        TextView expenseDate;
     }
 }

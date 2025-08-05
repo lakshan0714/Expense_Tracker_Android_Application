@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="#1C1F2A"
     tools:context=".Home">
 
     <LinearLayout
@@ -64,12 +64,22 @@
 
 
         </LinearLayout>
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="16dp" />
+            android:layout_height="wrap_content"
+
+            >
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="16dp" />
+
+
+        </LinearLayout>
+
 
 
 
@@ -171,8 +181,8 @@
             android:layout_height="120dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            android:backgroundTint="@color/white"
+            app:cardElevation="0dp"
+            android:backgroundTint="#2000B0FF"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -204,7 +214,7 @@
                         android:text="Expenses"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="#333333"
+                        android:textColor="@color/white"
                         android:fontFamily="sans-serif-medium" />
 
                     <TextView
@@ -212,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:text="Track and manage your spending"
                         android:textSize="14sp"
-                        android:textColor="#666666"
+                        android:textColor="@color/white"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>
@@ -221,7 +231,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_forward"
-                    app:tint="#666666" />
+                    app:tint="@color/white" />
 
             </LinearLayout>
 
@@ -297,8 +307,8 @@
             android:layout_height="120dp"
             android:layout_marginBottom="24dp"
             app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            android:backgroundTint="@android:color/white"
+            app:cardElevation="0dp"
+            android:backgroundTint="#2000B0FF"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -330,7 +340,7 @@
                         android:text="Settings"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="#333333"
+                        android:textColor="@color/white"
                         android:fontFamily="sans-serif-medium" />
 
                     <TextView
@@ -338,7 +348,7 @@
                         android:layout_height="wrap_content"
                         android:text="Customize your preferences"
                         android:textSize="14sp"
-                        android:textColor="#666666"
+                        android:textColor="@color/white"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>
@@ -347,7 +357,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_forward"
-                    app:tint="#666666" />
+                    app:tint="@color/white" />
 
             </LinearLayout>
 

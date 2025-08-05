@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1D1D55"
+    android:background="#1C1F2A"
     tools:context=".Login">
 
     <LinearLayout
@@ -65,7 +65,7 @@
                    android:layout_height="wrap_content"
                    android:hint="Email"
                    android:inputType="textEmailAddress"
-                   android:text="Loisbecket@gmail.com"
+                   android:text="example@gmail.com"
                    android:textColorHint="#808080"
                    android:textColor="#000000" />
            </com.google.android.material.textfield.TextInputLayout>

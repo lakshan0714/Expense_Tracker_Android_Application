@@ -146,13 +146,13 @@ public class Home extends AppCompatActivity {
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "Expenses by Category");
-        dataSet.setColors(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.MAGENTA, Color.CYAN);
+        dataSet.setColors(Color.parseColor("#7C4DFF"), Color.parseColor("#536DFE"), Color.parseColor("#448AFF"), Color.parseColor("#FF4081"), Color.parseColor("#D500F9"), Color.parseColor("#00B0FF"));
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
         PieData data = new PieData(dataSet);
         data.setValueTextSize(12f);
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.parseColor("#1D1D55"));
 
         pieChart.setData(data);
         pieChart.setUsePercentValues(true);
@@ -160,8 +160,12 @@ public class Home extends AppCompatActivity {
         pieChart.setHoleColor(Color.TRANSPARENT);
         pieChart.setTransparentCircleRadius(58f);
         pieChart.setCenterText("Expenses");
+        pieChart.setCenterTextColor(Color.parseColor("#FFFFFF"));
         pieChart.setCenterTextSize(18f);
         pieChart.animateY(1400);
+        pieChart.getLegend().setEnabled(false);
+
+        pieChart.getDescription().setEnabled(false);
         pieChart.invalidate(); // Refresh chart
     }
 

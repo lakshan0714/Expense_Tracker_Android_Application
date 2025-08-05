@@ -2,10 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#1C1F2A"
+    android:fitsSystemWindows="true">
 
     <!-- Top Bar -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,6 +20,8 @@
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_revert"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
             android:contentDescription="Back" />
 
         <TextView
@@ -25,30 +29,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Category Management"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginStart="16dp" />
-    </LinearLayout>
+            android:layout_centerInParent="true"
+             />
+
+        <!-- Floating Add Button -->
+        <ImageButton
+            android:id="@+id/addCategoryButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#1C1F2A"
+            android:src="@android:drawable/ic_menu_add"
+            android:contentDescription="Add Category"
+            android:layout_alignParentEnd="true"
+          />
+    </RelativeLayout>
+
+
 
     <!-- ListView to show categories -->
     <ListView
         android:id="@+id/categoryListView"
         android:layout_below="@id/topBar"
-        android:layout_above="@+id/addCategoryButton"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_bg"/>
 
-    <!-- Floating Add Button -->
-    <ImageButton
-        android:id="@+id/addCategoryButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@android:color/holo_blue_light"
-        android:src="@android:drawable/ic_input_add"
-        android:contentDescription="Add Category" />
+
 </RelativeLayout>

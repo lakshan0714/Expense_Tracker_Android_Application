@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#1C1F2A"
+    android:fitsSystemWindows="true">
 
     <!-- Top Bar -->
     <LinearLayout
@@ -26,6 +28,7 @@
             android:text="Expenses"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:layout_marginStart="16dp" />
 
         <ImageButton
@@ -203,10 +206,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Total Expenses: Rs. 0"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:padding="12dp"
-        android:background="#FFEBEE" />
+        android:background="#3DC98C" />
 
     <!-- Expense List -->
     <ListView
@@ -216,8 +220,8 @@
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="#E0E0E0"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="8dp"
+        />
 
     <!-- No Expenses Text -->
     <TextView
@@ -229,7 +233,7 @@
         android:layout_height="wrap_content"
         android:text="No expenses found.\nTap + to add your first expense!"
         android:textSize="16sp"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/white"
         android:gravity="center"
         android:visibility="gone" />
 
@@ -241,6 +245,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
-        android:background="@android:color/holo_green_light"
+        android:background="@color/white"
         android:src="@android:drawable/ic_input_add" />
 </RelativeLayout>

@@ -3,7 +3,9 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#1C1F2A"
+    android:fitsSystemWindows="true">
 
     <!-- Top bar with back button and title -->
     <LinearLayout
@@ -27,6 +29,7 @@
             android:text="Settings"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:layout_marginStart="16dp" />
     </LinearLayout>
 
@@ -44,21 +47,26 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="Category Management"
+        android:background="#2C2F3A"
         android:textSize="16sp"
-        android:background="?attr/selectableItemBackground"
+        android:textColor="@color/white"
         android:clickable="true"
         android:focusable="true" />
 
-    <!-- Theme Management -->
-    <TextView
-        android:id="@+id/themeManagement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Theme Management"
-        android:textSize="16sp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true" />
+
+
+<!--    &lt;!&ndash; Theme Management &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/themeManagement"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="12dp"-->
+<!--        android:text="Profile"-->
+<!--        android:textSize="16sp"-->
+<!--        android:background="?attr/selectableItemBackground"-->
+<!--        android:clickable="true"-->
+<!--        android:focusable="true" />-->
+
+
 
 </LinearLayout>

@@ -41,9 +41,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_EXPENSE_DATE = "date";
     private static final String KEY_EXPENSE_LOCATION = "location";
 
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -176,153 +178,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
-    // Get Expenses by Category
-    public List<Expense> getExpensesByCategory(String category) {
-        List<Expense> expenseList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + TABLE_EXPENSES + " WHERE " + KEY_EXPENSE_CATEGORY + " = ?";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, new String[]{category});
-
-        if (cursor.moveToFirst()) {
-            do {
-                Expense expense = new Expense();
-                expense.setId(cursor.getInt(0));
-                expense.setTitle(cursor.getString(1));
-                expense.setCategory(cursor.getString(2));
-                expense.setAmount(cursor.getDouble(3));
-                expense.setDate(cursor.getString(4));
-                expense.setLocation(cursor.getString(5));
-                expenseList.add(expense);
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-        return expenseList;
-    }
-
-
-    // Update Expense
-    public int updateExpense(Expense expense) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_EXPENSE_Title, expense.getTitle());
-        values.put(KEY_EXPENSE_CATEGORY, expense.getCategory());
-        values.put(KEY_EXPENSE_AMOUNT, expense.getAmount());
-        values.put(KEY_EXPENSE_DATE, expense.getDate());
-        values.put(KEY_EXPENSE_LOCATION, expense.getLocation());
-
-        int result = db.update(TABLE_EXPENSES, values, KEY_EXPENSE_ID + " = ?",
-                new String[] { String.valueOf(expense.getId()) });
-        db.close();
-        return result;
-    }
-
-    // Delete Expense
-    public void deleteExpense(Expense expense) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        db.delete(TABLE_EXPENSES, KEY_EXPENSE_ID + " = ?",
-                new String[] { String.valueOf(expense.getId()) });
-        db.close();
-    }
-
-
-    // Get Total Expenses Amount
-    public double getTotalExpenses() {
-        String selectQuery = "SELECT SUM(" + KEY_EXPENSE_AMOUNT + ") FROM " + TABLE_EXPENSES;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        double total = 0;
-        if (cursor.moveToFirst()) {
-            total = cursor.getDouble(0);
-        }
-
-        cursor.close();
-        db.close();
-        return total;
-    }
-
-
-
-// Filter Expenses Methods
-    // Method to get expenses by date range
-    public List<Expense> getExpensesByDateRange(String email,String startDate, String endDate) {
-        List<Expense> expenses = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "SELECT * FROM expenses WHERE date BETWEEN ? AND ? AND email = ?ORDER BY date DESC";
-        Cursor cursor = db.rawQuery(query, new String[]{startDate, endDate,email});
-
-        if (cursor.moveToFirst()) {
-            do {
-                String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
-                String title = cursor.getString(cursor.getColumnIndexOrThrow("Title"));
-                String category = cursor.getString(cursor.getColumnIndexOrThrow("category"));
-                double amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
-                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
-                String location = cursor.getString(cursor.getColumnIndexOrThrow("location"));
-
-                expenses.add(new Expense(id,title, category, amount, date, location));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-        return expenses;
-    }
-
-
-
-
-    // Method to search expenses by title
-    public List<Expense> searchExpensesByTitle(String email,String searchQuery) {
-        List<Expense> expenses = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "SELECT * FROM expenses WHERE title LIKE ? AND email = ?ORDER BY date DESC";
-        Cursor cursor = db.rawQuery(query, new String[]{"%" + searchQuery + "%",email});
-
-        if (cursor.moveToFirst()) {
-            do {
-                String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
-                String title = cursor.getString(cursor.getColumnIndexOrThrow("Title"));
-                String category = cursor.getString(cursor.getColumnIndexOrThrow("category"));
-                double amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
-                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
-                String location = cursor.getString(cursor.getColumnIndexOrThrow("location"));
-
-                expenses.add(new Expense(id, title, category, amount, date, location));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-        return expenses;
-    }
-
-    // Method to get total expense amount
-    public int getTotalExpenseAmount(String email) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        int total = 0;
-
-        String query = "SELECT SUM(amount) as total FROM expenses WHERE email = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{email});
-
-        if (cursor.moveToFirst()) {
-            total = cursor.getInt(cursor.getColumnIndexOrThrow("total"));
-        }
-
-        cursor.close();
-        db.close();
-        return total;
-    }
-
-
-
     // Method to delete an expense
     public boolean deleteExpense(int expenseId) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -331,20 +186,155 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result > 0;
     }
 
-    // Method to update an expense
-    public boolean updateExpense(int id, String title, String category, int amount, String date, String location) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
 
-        values.put("Title", title);
-        values.put("category", category);
-        values.put("amount", amount);
-        values.put("date", date);
-        values.put("location", location);
+//
+//    // Get Expenses by Category
+//    public List<Expense> getExpensesByCategory(String category) {
+//        List<Expense> expenseList = new ArrayList<>();
+//        String selectQuery = "SELECT * FROM " + TABLE_EXPENSES + " WHERE " + KEY_EXPENSE_CATEGORY + " = ?";
+//
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery(selectQuery, new String[]{category});
+//
+//        if (cursor.moveToFirst()) {
+//            do {
+//                Expense expense = new Expense();
+//                expense.setId(cursor.getInt(0));
+//                expense.setTitle(cursor.getString(1));
+//                expense.setCategory(cursor.getString(2));
+//                expense.setAmount(cursor.getDouble(3));
+//                expense.setDate(cursor.getString(4));
+//                expense.setLocation(cursor.getString(5));
+//                expenseList.add(expense);
+//            } while (cursor.moveToNext());
+//        }
+//
+//        cursor.close();
+//        db.close();
+//        return expenseList;
+//    }
+//
+//
+//    // Update Expense
+//    public int updateExpense(Expense expense) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//        values.put(KEY_EXPENSE_Title, expense.getTitle());
+//        values.put(KEY_EXPENSE_CATEGORY, expense.getCategory());
+//        values.put(KEY_EXPENSE_AMOUNT, expense.getAmount());
+//        values.put(KEY_EXPENSE_DATE, expense.getDate());
+//        values.put(KEY_EXPENSE_LOCATION, expense.getLocation());
+//
+//        int result = db.update(TABLE_EXPENSES, values, KEY_EXPENSE_ID + " = ?",
+//                new String[] { String.valueOf(expense.getId()) });
+//        db.close();
+//        return result;
+//    }
+//
+//    // Delete Expense
+//    public void deleteExpense(Expense expense) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        db.delete(TABLE_EXPENSES, KEY_EXPENSE_ID + " = ?",
+//                new String[] { String.valueOf(expense.getId()) });
+//        db.close();
+//    }
+//
+//
+//    // Get Total Expenses Amount
+//    public double getTotalExpenses() {
+//        String selectQuery = "SELECT SUM(" + KEY_EXPENSE_AMOUNT + ") FROM " + TABLE_EXPENSES;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery(selectQuery, null);
+//
+//        double total = 0;
+//        if (cursor.moveToFirst()) {
+//            total = cursor.getDouble(0);
+//        }
+//
+//        cursor.close();
+//        db.close();
+//        return total;
+//    }
+//
+//
+//
+//// Filter Expenses Methods
+//    // Method to get expenses by date range
+//    public List<Expense> getExpensesByDateRange(String email,String startDate, String endDate) {
+//        List<Expense> expenses = new ArrayList<>();
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        String query = "SELECT * FROM expenses WHERE date BETWEEN ? AND ? AND email = ?ORDER BY date DESC";
+//        Cursor cursor = db.rawQuery(query, new String[]{startDate, endDate,email});
+//
+//        if (cursor.moveToFirst()) {
+//            do {
+//                String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
+//                String title = cursor.getString(cursor.getColumnIndexOrThrow("Title"));
+//                String category = cursor.getString(cursor.getColumnIndexOrThrow("category"));
+//                double amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
+//                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+//                String location = cursor.getString(cursor.getColumnIndexOrThrow("location"));
+//
+//                expenses.add(new Expense(id,title, category, amount, date, location));
+//            } while (cursor.moveToNext());
+//        }
+//
+//        cursor.close();
+//        db.close();
+//        return expenses;
+//    }
+//
+//
+//
+//
+//    // Method to search expenses by title
+//    public List<Expense> searchExpensesByTitle(String email,String searchQuery) {
+//        List<Expense> expenses = new ArrayList<>();
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        String query = "SELECT * FROM expenses WHERE title LIKE ? AND email = ?ORDER BY date DESC";
+//        Cursor cursor = db.rawQuery(query, new String[]{"%" + searchQuery + "%",email});
+//
+//        if (cursor.moveToFirst()) {
+//            do {
+//                String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
+//                String title = cursor.getString(cursor.getColumnIndexOrThrow("Title"));
+//                String category = cursor.getString(cursor.getColumnIndexOrThrow("category"));
+//                double amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
+//                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+//                String location = cursor.getString(cursor.getColumnIndexOrThrow("location"));
+//
+//                expenses.add(new Expense(id, title, category, amount, date, location));
+//            } while (cursor.moveToNext());
+//        }
+//
+//        cursor.close();
+//        db.close();
+//        return expenses;
+//    }
+//
+//    // Method to get total expense amount
+//    public int getTotalExpenseAmount(String email) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        int total = 0;
+//
+//        String query = "SELECT SUM(amount) as total FROM expenses WHERE email = ?";
+//        Cursor cursor = db.rawQuery(query, new String[]{email});
+//
+//        if (cursor.moveToFirst()) {
+//            total = cursor.getInt(cursor.getColumnIndexOrThrow("total"));
+//        }
+//
+//        cursor.close();
+//        db.close();
+//        return total;
+//    }
 
-        int result = db.update("expenses", values, "id = ?", new String[]{String.valueOf(id)});
-        db.close();
-        return result > 0;
 
-    }}
+
+
+
+}
 

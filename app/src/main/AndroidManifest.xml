@@ -30,18 +30,14 @@
         <activity
             android:name=".AddExpenseActivity"
             android:exported="false" />
-        <activity
-            android:name=".ThemeManagement"
-            android:exported="false" />
+
         <activity
             android:name=".CategoryManagement"
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
-        <activity
-            android:name=".DashboardActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ExpensesActivity"
             android:exported="false" />
