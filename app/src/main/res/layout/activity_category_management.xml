@@ -3,7 +3,7 @@
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1F2A"
+    android:background="@drawable/gradient_background"
     android:fitsSystemWindows="true">
 
     <!-- Top Bar -->
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Category Management"
-            android:textColor="@color/white"
+            android:textColor="#333333"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_centerInParent="true"
@@ -40,7 +40,7 @@
             android:id="@+id/addCategoryButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="#1C1F2A"
+            android:background="#FDFCFB"
             android:src="@android:drawable/ic_menu_add"
             android:contentDescription="Add Category"
             android:layout_alignParentEnd="true"

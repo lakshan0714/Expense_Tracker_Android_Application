@@ -160,7 +160,7 @@ public class Home extends AppCompatActivity {
         pieChart.setHoleColor(Color.TRANSPARENT);
         pieChart.setTransparentCircleRadius(58f);
         pieChart.setCenterText("Expenses");
-        pieChart.setCenterTextColor(Color.parseColor("#FFFFFF"));
+        pieChart.setCenterTextColor(Color.parseColor("#333333"));
         pieChart.setCenterTextSize(18f);
         pieChart.animateY(1400);
         pieChart.getLegend().setEnabled(false);

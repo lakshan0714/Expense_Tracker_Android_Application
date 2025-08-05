@@ -4,7 +4,7 @@
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1F2A"
+    android:background="@drawable/gradient_background"
     android:fitsSystemWindows="true">
 
     <!-- Top bar with back button and title -->
@@ -29,7 +29,7 @@
             android:text="Settings"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="#333333"
             android:layout_marginStart="16dp" />
     </LinearLayout>
 
@@ -47,9 +47,9 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:text="Category Management"
-        android:background="#2C2F3A"
+        android:background="#F8F8F8"
         android:textSize="16sp"
-        android:textColor="@color/white"
+        android:textColor="#333333"
         android:clickable="true"
         android:focusable="true" />
 

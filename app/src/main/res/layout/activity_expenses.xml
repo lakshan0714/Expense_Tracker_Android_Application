@@ -3,7 +3,7 @@
     android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1F2A"
+    android:background="@drawable/gradient_background"
     android:fitsSystemWindows="true">
 
     <!-- Top Bar -->
@@ -28,7 +28,7 @@
             android:text="Expenses"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="#333333"
             android:layout_marginStart="16dp" />
 
         <ImageButton
@@ -206,11 +206,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Total Expenses: Rs. 0"
-        android:textColor="@color/white"
+        android:textColor="#333333"
         android:textSize="18sp"
         android:textStyle="bold"
         android:padding="12dp"
-        android:background="#3DC98C" />
+        android:background="#C8E4D7" />
 
     <!-- Expense List -->
     <ListView
@@ -245,6 +245,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
-        android:background="@color/white"
+        android:background="#C8E4D7"
         android:src="@android:drawable/ic_input_add" />
 </RelativeLayout>
